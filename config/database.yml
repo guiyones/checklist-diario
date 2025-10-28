@@ -82,8 +82,10 @@ production:
   primary: &primary_production
     <<: *default
     database: checklist_diario_production
-    username: checklist_diario
-    password: <%= ENV["CHECKLIST_DIARIO_DATABASE_PASSWORD"] %>
+    username: <%= ENV["DATABASE_USERNAME"] %>
+    host: <%= ENV["DATABASE_HOST"] %>
+    password: <%= ENV["DATABASE_PASSWORD"] || "" %>
+
   cache:
     <<: *primary_production
     database: checklist_diario_production_cache

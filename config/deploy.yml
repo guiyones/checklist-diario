@@ -7,7 +7,8 @@ image: guinoyo/checklist_diario
 # Deploy to these servers.
 servers:
   web:
-    - sarandi@138.199.239.103
+     - 138.199.239.103
+
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -18,8 +19,8 @@ servers:
 #
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
-  ssl: true
-  host: app.example.com
+  ssl: false
+  # host: app.example.com
 
 # Credentials for your image host.
 registry:
@@ -39,6 +40,13 @@ env:
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
     # When you start using multiple servers, you should split out job processing to a dedicated machine.
     SOLID_QUEUE_IN_PUMA: true
+    RAILS_ENV: production
+    RAILS_LOG_TO_STDOUT: true
+    DB_HOST: checklist_diario-db
+    DB_PORT: 5432
+    DB_USER: postgres
+    DB_PASSWORD: gui070591
+    DB_NAME: checklist_diario_production
 
     # Set number of processes dedicated to Solid Queue (default: 1)
     # JOB_CONCURRENCY: 3
@@ -88,29 +96,43 @@ builder:
   #   - RAILS_MASTER_KEY
 
 # Use a different ssh user than root
-# ssh:
-#   user: app
+ssh:
+  user: sarandi
+
+accessories:
+  db:
+    image: postgres:16
+    host: 138.199.239.103
+    port: "5432:5432"
+    env:
+      clear:
+        POSTGRES_USER: postgres
+        POSTGRES_DB: checklist_diario_production
+      secret:
+        - POSTGRES_PASSWORD
+    directories:
+      - data:/var/lib/postgresql/data
 
 # Use accessory services (secrets come from .kamal/secrets).
 # accessories:
-#   db:
-#     image: mysql:8.0
-#     host: 192.168.0.2
-#     # Change to 3306 to expose port to the world instead of just local network.
-#     port: "127.0.0.1:3306:3306"
-#     env:
-#       clear:
-#         MYSQL_ROOT_HOST: '%'
-#       secret:
-#         - MYSQL_ROOT_PASSWORD
-#     files:
-#       - config/mysql/production.cnf:/etc/mysql/my.cnf
-#       - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
-#     directories:
-#       - data:/var/lib/mysql
-#   redis:
-#     image: redis:7.0
-#     host: 192.168.0.2
-#     port: 6379
-#     directories:
-#       - data:/data
+# db:
+#   image: mysql:8.0
+#   host: 192.168.0.2
+#   # Change to 3306 to expose port to the world instead of just local network.
+#   port: "127.0.0.1:3306:3306"
+#   env:
+#     clear:
+#       MYSQL_ROOT_HOST: '%'
+#     secret:
+#       - MYSQL_ROOT_PASSWORD
+#   files:
+#     - config/mysql/production.cnf:/etc/mysql/my.cnf
+#     - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
+#   directories:
+#     - data:/var/lib/mysql
+# redis:
+#   image: redis:7.0
+#   host: 192.168.0.2
+#   port: 6379
+#   directories:
+#     - data:/data
