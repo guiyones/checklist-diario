@@ -1,0 +1,76 @@
+<div id="<%= dom_id diario %>" class="sm:w-auto my-5 space-y-8">
+
+    <section class="flex flex-row gap-8 text-lg mb-6">
+        <div class="flex flex-col flex-1 bg-gray-100 shadow rounded-lg p-4 items-center ">
+            <strong class="flex font-medium mb-1 bg-blue-100 w-full items-center justify-center">DATA:</strong>
+            <div class="flex py-2 text-xl">
+                <%= l diario.data %>
+            </div>
+        </div>
+
+        <div class="flex flex-col flex-1 bg-gray-100 shadow rounded-lg p-4 items-center">
+            <strong class="flex font-medium mb-1 bg-blue-100 w-full items-center justify-center">DIA:</strong>
+            <div class="flex py-2 text-xl">
+                <%= diario.dia_semana %>
+            </div>
+        </div>
+
+        <div class="flex flex-col flex-1 bg-gray-100 shadow rounded-lg p-4 items-center">
+            <strong class="flex font-medium mb-1 bg-blue-100 w-full items-center justify-center">PONTOS:</strong>
+            <div class="flex py-2 text-xl">
+                <span class="text-right"> <%= diario.pontucao %> </span>
+            </div>
+        </div>
+    </section>
+
+    <section class="flex flex-row gap-6">
+        <div class="flex flex-col w-140 bg-gray-100 shadow rounded-lg p-4 items-center">
+            <strong class="flex font-medium mb-1 bg-blue-100 w-full items-center justify-center">EXERCICIO:</strong>
+            <div class="flex py-2 text-xl">
+                <%= diario.exercicio? ? "Sim" : "Não" %>
+            </div>
+        </div>
+
+        <div class="flex flex-col bg-gray-100 shadow rounded-lg p-4 items-center">
+            <strong class="flex font-medium mb-1 bg-blue-100 w-full items-center justify-center">LEITURA:</strong>
+            <div class="flex py-2 text-xl">
+                <%= diario.leitura? ? "Sim" : "Não" %>
+            </div>
+        </div>
+
+
+        <div class="flex flex-col bg-gray-100 shadow rounded-lg p-4 items-center">
+            <strong class="flex font-medium mb-1 bg-blue-100 w-full items-center justify-center">ALIMENTAÇÃO:</strong>
+            <div class="flex py-2 text-xl">
+                <%= diario.alimentacao? ? "Sim" : "Não" %>
+            </div>
+        </div>
+
+        <div class="flex flex-col bg-gray-100 shadow rounded-lg p-4 items-center">
+            <strong class="flex font-medium mb-1 bg-blue-100 w-full items-center justify-center">ESTUDO:</strong>
+            <div class="flex py-2 text-xl">
+                <%= diario.estudo? ? "Sim" : "Não" %>
+            </div>
+        </div>
+
+        <div class="flex flex-col bg-gray-100 shadow rounded-lg p-4 items-center">
+            <strong class="flex font-medium mb-1 bg-blue-100 w-full items-center justify-center">SONO:</strong>
+            <div class="flex py-2 text-xl">
+                <%= diario.sono? ? "Sim" : "Não" %>
+            </div>
+        </div>
+
+        <div class="flex flex-col bg-gray-100 shadow rounded-lg p-4 items-center">
+            <strong class="flex font-medium mb-1 bg-blue-100 w-full items-center justify-center">ALCOOL:</strong>
+            <div class="flex py-2 text-xl">
+                <%= diario.alcool? ? "Sim" : "Não" %>
+            </div>
+        </div>
+
+    </section>
+
+    <section>
+        <strong class="block text-xl mb-1">Observações:</strong>
+        <span class="text-xl"><%= diario.observacao %></span>
+    </section>
+</div>
