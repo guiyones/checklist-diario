@@ -16,7 +16,7 @@ export default class extends Controller {
     checkboxes.forEach(cb => {
       const name = cb.dataset.habitName
       if (cb.checked) {
-        if (name === "alcool" || name === "jogo") {
+        if (name === "alcool" || name === "maconha") {
           total -= 1
         } else {
           total += 1

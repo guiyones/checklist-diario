@@ -2,11 +2,19 @@ class Diario < ApplicationRecord
   has_rich_text :observacao
 
   def pontuacao
-    pontos = [ exercicio, leitura, alimentacao, sono, estudo ]
-    if alcool?
-      pontos.count(true) - 1
-    else
-      pontos.count(true)
+    pontosPositivos = [ exercicio?, leitura?, alimentacao?, sono?, estudo? ]
+    pontosNegativos = [alcool?, maconha?]
+
+    pontos = 0
+
+    pontosPositivos.each do |habito|
+      pontos += 1 if habito
     end
+
+    pontosNegativos.each do |habito|
+      pontos += habito ? -1:1
+    end
+
+    pontos
   end
 end

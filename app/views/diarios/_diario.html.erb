@@ -1,4 +1,4 @@
-<div id="<%= dom_id diario %>">
+<div id="<%= dom_id diario %>" class="m-4">
     <!-- Linha de cima -->
     <section class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
         <div class="bg-gray-100 shadow rounded-lg p-4 flex flex-col items-center">
@@ -41,13 +41,8 @@
         </div>
 
         <div class="bg-gray-100 shadow rounded-lg p-4 flex flex-col items-center">
-            <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md">ESTUDO:</strong>
-            <div class="py-2 text-xl"><%= diario.estudo? ? "Sim" : "Não" %></div>
-        </div>
-
-        <div class="bg-gray-100 shadow rounded-lg p-4 flex flex-col items-center">
-            <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md">SONO:</strong>
-            <div class="py-2 text-xl"><%= diario.sono? ? "Sim" : "Não" %></div>
+            <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md">MACONHA:</strong>
+            <div class="py-2 text-xl"><%= diario.maconha? ? "Sim" : "Não" %></div>
         </div>
 
         <div class="bg-gray-100 shadow rounded-lg p-4 flex flex-col items-center">

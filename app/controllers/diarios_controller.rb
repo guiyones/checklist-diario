@@ -65,6 +65,6 @@ class DiariosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def diario_params
-      params.expect(diario: [ :data, :dia_semana, :exercicio, :leitura, :alimentacao, :alcool, :estudo, :pontos, :observacao, :sono ])
+      params.expect(diario: [ :data, :dia_semana, :exercicio, :leitura, :alimentacao, :alcool, :estudo, :pontos, :observacao, :sono, :maconha ])
     end
 end

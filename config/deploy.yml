@@ -26,11 +26,11 @@ env:
     SOLID_QUEUE_IN_PUMA: true
     RAILS_ENV: production
     RAILS_LOG_TO_STDOUT: true
-    DB_HOST: checklist_diario-db
-    DB_PORT: 5432
-    DB_USER: postgres
-    DB_PASSWORD: gui070591
-    DB_NAME: checklist_diario_production
+
+    # DB_PORT: 5432
+    # DB_USER: postgres
+    # DB_PASSWORD: gui070591
+    # DB_NAME: checklist_diario_production
 
 
 aliases:
@@ -60,17 +60,17 @@ ssh:
   user: sarandi
 
 
-accessories:
-  db:
-    image: postgres:17
-    host: checklist_diario-db
-    port: "5432"
-    env:
-      clear:
-        POSTGRES_USER: postgres
-        POSTGRES_DB: checklist_diario_production
-      secret:
-        - POSTGRES_PASSWORD
-    directories:
-      - data:/var/lib/postgresql/data
-
+# accessories:
+#   db:
+#     image: postgres:17
+#     host: checklist_diario-db
+#     port: "5432"
+#     env:
+#       clear:
+#         POSTGRES_USER: postgres
+#         POSTGRES_DB: checklist_diario_production
+#       secret:
+#         - POSTGRES_PASSWORD
+#     directories:
+#       - data:/var/lib/postgresql/data
+#
