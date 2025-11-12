@@ -18,10 +18,20 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
+    
+  <body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
 
-  <body class="bg-gray-200">
-    <main class="container mx-auto px-48 flex justify-center">
+    <!-- Conteúdo principal -->
+    <main class="flex-grow container mx-auto max-w-3xl p-4">
       <%= yield %>
     </main>
+
+    <!-- Footer simples -->
+    <footer class="bg-white text-center text-gray-500 py-4 text-sm border-t">
+      Feito com ❤️ por Guilherme
+    </footer>
+
   </body>
 </html>
+
+

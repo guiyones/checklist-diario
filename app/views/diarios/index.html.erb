@@ -1,35 +1,42 @@
-<% content_for :title, "Diarios" %>
+<% content_for :title, "Diários" %>
 
-<div class="w-full min-h-screen max-w-4xl overflow-x-auto shadow-md rounded-xl p-4 bg-gray-100">
+<div class="max-w-4xl mx-auto min-h-screen px-4 py-5">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 text-green-600 font-medium rounded-md mb-6 text-center" id="notice">
+      <%= notice %>
+    </p>
+  <% end %>
 
-    <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block duration-300" id="notice"><%= notice %></p>
+  <!-- Top bar -->
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-3xl font-bold text-gray-800">Meus Diários</h1>
+
+    <%= link_to new_diario_path,
+      class: "w-10 h-10 flex items-center justify-center rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-md active:scale-95 transition-transform duration-150" do %>
+      <%= heroicon "plus", variant: :outline, options: { class: "w-5 h-5" } %>
     <% end %>
+  </div>
 
-    <div class="flex justify-between items-center py-4">
-        <h1 class="font-bold text-4xl text-gray-700">Diarios</h1>
-
-        <%= link_to new_diario_path, class: "w-10 h-10 flex items-center justify-center rounded-full bg-green-300 hover:bg-green-200 text-white shadow transition" do %>
-        <%= heroicon "plus", variant: :outline, options: { class: "w-5 h-5" } %>
+  <!-- Tabela -->
+  <div class="overflow-hidden rounded-xl shadow-sm border border-gray-200 bg-white">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-100 text-gray-700 text-sm font-semibold">
+        <tr>
+          <th class="px-6 py-3 text-left">Data</th>
+          <th class="px-6 py-3 text-left">Dia</th>
+          <th class="px-6 py-3 text-center">Pontuação</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100 text-gray-800">
+        <% @diarios.each do |diario| %>
+          <tr class="hover:bg-gray-50 cursor-pointer transition" onclick="window.location='<%= diario_path(diario) %>'">
+            <td class="px-6 py-3"><%= l diario.data %></td>
+            <td class="px-6 py-3"><%= diario.dia_semana %></td>
+            <td class="px-6 py-3 text-center font-semibold text-emerald-600"><%= diario.pontuacao %></td>
+          </tr>
         <% end %>
-    </div>
-
-    <table id="diarios_table" class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-        <thead>
-            <tr class="bg-gray-200 text-left text-gray-600 font-semibold">
-                <th class="py-3 px-4">Data</th>
-                <th class="py-3 px-4">Dia</th>
-                <th class="py-3 px-4 text-center">Pontuação</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @diarios.each do |diario| %>
-            <tr class="hover:bg-gray-100 transition cursor-pointer" onclick="window.location='<%= diario_path(diario) %>'">
-                <td class="py-2 px-4"><%= l diario.data %></td>
-                <td class="py-2 px-4"><%= diario.dia_semana %></td>
-                <td class="py-2 px-4 text-center"><%= diario.pontuacao %></td>
-            </tr>
-            <% end %>
-        </tbody>
+      </tbody>
     </table>
+  </div>
 </div>
+

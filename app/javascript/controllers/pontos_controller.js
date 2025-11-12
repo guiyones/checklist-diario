@@ -11,7 +11,7 @@ export default class extends Controller {
   updateCount() {
     const checkboxes = this.checkboxTargets
     let total = 0
-    const max = 5
+    const max = 3
 
     checkboxes.forEach(cb => {
       const name = cb.dataset.habitName

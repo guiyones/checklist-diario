@@ -1,4 +1,5 @@
-<%= form_with(model: diario, class: "contents") do |form| %>
+ 
+<%= form_with(model: diario, id:"diario_form", class: "contents") do |form| %>
 <% if diario.errors.any? %>
 <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
     <h2><%= pluralize(diario.errors.count, "error") %> prohibited this diario from being saved:</h2>
@@ -11,21 +12,7 @@
 </div>
 <% end %>
 
-<%= link_to root_path, 
-  class: "absolute top-10 left-76 w-10 h-10 flex items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg hover:bg-emerald-600 active:scale-95 transition-transform duration-150" do %>
-
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-</svg>
-
-<% end %>
-
-<div class="absolute right-76 top-10">
-    <%= form.submit "Salvar", class: "sm:w-auto rounded-md px-6 py-2.5 text-center bg-green-400 hover:green-300 text-white font-medium cursor-pointer" %>
-    <%= link_to "Cancelar", diarios_path, class: "sm:w-auto rounded-md px-3.5 py-2.5 text-center text-white bg-red-400 hover:bg-red-300 inline-block font-bold" %>
-</div>
-
-<div class="flex flex-row my-12 justify-center items-center gap-4">
+<div class="flex flex-row my-12 justify-center items-center gap-4 mb-8">
     <div>
         <%= form.label :data, class:"font-semibold" %>
         <%= form.date_field :data, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": diario.errors[:data].none?, "border-red-400 focus:outline-red-600": diario.errors[:data].any?}] %>
@@ -36,11 +23,11 @@
     </div>
 </div>
 
-<div data-controller="pontos" class="mt-6 mb-12 flex flex-col items-center">
+<div data-controller="pontos" class="mt-6 mb-8 flex flex-col items-center">
     <!-- 🔵 Placar redondo -->
     <div class="relative flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 border-4 border-emerald-400 shadow-inner mb-6 transition-all duration-300" data-pontos-target="circle">
         <span class="text-xl font-bold text-emerald-600 transition-all duration-300" data-pontos-target="counter">
-            0 / 5
+            0 / 3
         </span>
     </div>
 
@@ -75,9 +62,15 @@
         </div>
     </div>
 
-    <div class="mb-2">
+    <div class="mb-8">
         <%= form.label :observacao, "Observação", class: "block mb-2 font-semibold text-gray-700" %>
         <%= form.rich_textarea :observacao, class: "h-40 overflow-y-auto resize-none border border-gray-300 rounded-lg p-3" %>
     </div>
 
-    <% end %>
+    <div class="flex justify-end mt-6">
+      <%= form.submit "Salvar", class: "bg-green-500 text-white px-5 py-2 rounded-md hover:bg-green-600 transition" %>
+    </div>
+
+
+  <% end %>
+

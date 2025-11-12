@@ -1,59 +1,73 @@
-<div id="<%= dom_id diario %>" class="m-4">
-    <!-- Linha de cima -->
-    <section class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-        <div class="bg-gray-100 shadow rounded-lg p-4 flex flex-col items-center">
-            <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md">DATA:</strong>
-            <div class="py-2 text-xl font-semibold text-gray-800">
-                <%= l diario.data %>
-            </div>
+<% content_for :header do %>
+  <div class="flex items-center justify-between">
+    <!-- Botão voltar -->
+    <%= link_to root_path,
+      class: "w-10 h-10 flex items-center justify-center rounded-full bg-emerald-500 text-white shadow hover:bg-emerald-600 transition" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+    <% end %>
+
+    <!-- Título central -->
+    <h1 class="text-2xl font-bold text-gray-800">Detalhes do Diário</h1>
+
+    <!-- Botões de ação -->
+    <div class="flex gap-3">
+      <%= link_to "Editar", edit_diario_path(@diario), class: "rounded-md px-5 py-2 bg-emerald-500 text-white font-medium hover:bg-emerald-600 transition" %>
+      <%= button_to "Excluir", @diario, method: :delete, data: { confirm: "Tem certeza que deseja excluir este diário?" },
+            class: "rounded-md px-4 py-2 bg-red-500 text-white font-medium hover:bg-red-600 transition" %>
+    </div>
+  </div>
+<% end %>
+
+<!-- Conteúdo principal -->
+<div id="<%= dom_id @diario %>" class="space-y-8">
+  <!-- Linha superior -->
+  <section class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+    <div class="bg-gray-50 shadow rounded-lg p-4 flex flex-col items-center">
+      <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md py-1">DATA</strong>
+      <div class="py-2 text-xl font-semibold text-gray-800">
+        <%= l @diario.data %>
+      </div>
+    </div>
+
+    <div class="bg-gray-50 shadow rounded-lg p-4 flex flex-col items-center">
+      <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md py-1">DIA</strong>
+      <div class="py-2 text-xl font-semibold text-gray-800">
+        <%= @diario.dia_semana %>
+      </div>
+    </div>
+
+    <div class="bg-gray-50 shadow rounded-lg p-4 flex flex-col items-center">
+      <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md py-1">PONTOS</strong>
+      <div class="py-2 text-2xl font-bold text-emerald-600">
+        <%= @diario.pontuacao %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Linha inferior -->
+  <section class="grid sm:grid-cols-3 lg:grid-cols-2 gap-6">
+    <% {
+      "EXERCÍCIO" => @diario.exercicio?,
+      "LEITURA" => @diario.leitura?,
+      "ALIMENTAÇÃO" => @diario.alimentacao?,
+      "MACONHA" => @diario.maconha?,
+      "ÁLCOOL" => @diario.alcool?
+    }.each do |label, value| %>
+      <div class="bg-gray-50 shadow rounded-lg p-4 flex flex-col items-center">
+        <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md py-1"><%= label %></strong>
+        <div class="py-2 text-xl font-semibold text-gray-800">
+          <%= value ? "Sim" : "Não" %>
         </div>
+      </div>
+    <% end %>
+  </section>
 
-        <div class="bg-gray-100 shadow rounded-lg p-4 flex flex-col items-center">
-            <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md">DIA:</strong>
-            <div class="py-2 text-xl font-semibold text-gray-800">
-                <%= diario.dia_semana %>
-            </div>
-        </div>
-
-        <div class="bg-gray-100 shadow rounded-lg p-4 flex flex-col items-center">
-            <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md">PONTOS:</strong>
-            <div class="py-2 text-xl font-bold text-emerald-600">
-                <%= diario.pontuacao %>
-            </div>
-        </div>
-    </section>
-
-    <!-- Linha de baixo -->
-    <section class="grid lg:grid-cols-2 sm:grid-cols-3 gap-6 mb-8">
-        <div class="bg-gray-100 shadow rounded-lg p-4 flex flex-col items-center">
-            <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md">EXERCÍCIO:</strong>
-            <div class="py-2 text-xl"><%= diario.exercicio? ? "Sim" : "Não" %></div>
-        </div>
-
-        <div class="bg-gray-100 shadow rounded-lg p-4 flex flex-col items-center">
-            <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md">LEITURA:</strong>
-            <div class="py-2 text-xl"><%= diario.leitura? ? "Sim" : "Não" %></div>
-        </div>
-
-        <div class="bg-gray-100 shadow rounded-lg p-4 flex flex-col items-center">
-            <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md">ALIMENTAÇÃO:</strong>
-            <div class="py-2 text-xl"><%= diario.alimentacao? ? "Sim" : "Não" %></div>
-        </div>
-
-        <div class="bg-gray-100 shadow rounded-lg p-4 flex flex-col items-center">
-            <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md">MACONHA:</strong>
-            <div class="py-2 text-xl"><%= diario.maconha? ? "Sim" : "Não" %></div>
-        </div>
-
-        <div class="bg-gray-100 shadow rounded-lg p-4 flex flex-col items-center">
-            <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md">ÁLCOOL:</strong>
-            <div class="py-2 text-xl"><%= diario.alcool? ? "Sim" : "Não" %></div>
-        </div>
-    </section>
-
-
-    <section>
-        <strong class="block text-xl mb-1">Observações:</strong>
-        <span class="text-xl"><%= diario.observacao %></span>
-    </section>
+  <!-- Observações -->
+  <section class="bg-gray-50 shadow rounded-lg p-4">
+    <strong class="block text-xl font-medium text-gray-700 mb-2">Observações:</strong>
+    <p class="text-lg text-gray-800 whitespace-pre-line leading-relaxed"><%= @diario.observacao %></p>
+  </section>
 </div>
+

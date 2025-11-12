@@ -1,10 +1,20 @@
-<% content_for :title, "New diario" %>
+<% content_for :title, "Novo Diário" %>
 
-<div class="flex flex-col w-full items-center bg-gray-100 rounded-xl px-6 pt-10">
-    <h1 class="font-bold text-4xl text-gray-700">Novo Diario</h1>
-
-    <div class="md:w-2/3 ">
-        <%= render "form", diario: @diario%>
-    </div>
-
+<div class="relative flex items-center justify-center rounded-xl max-w-4xl w-full p-3 ">
+    <!-- Voltar -->
+    <%= link_to root_path,
+      class: "absolute left-6 w-10 h-10 flex items-center justify-center rounded-full bg-emerald-500 text-white shadow-md hover:bg-emerald-600 active:scale-95 transition-transform duration-150" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+    <% end %>
+  
+    <h1 class="text-3xl font-bold text-gray-700">Novo</h1>
+ 
 </div>
+
+<!-- Formulário -->
+<div class="flex flex-col items-center bg-gray-200/25 rounded-xl max-w-4xl w-full p-6 shadow-md mt-6">
+  <%= render "form", diario: @diario %>
+</div>
+

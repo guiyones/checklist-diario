@@ -1,28 +1,39 @@
-<% content_for :title, "Showing diario" %>
+<% content_for :title, "Visualizar Diário" %>
 
-<div class="absolute right-78 top-10">
-    <%= link_to "Editar", edit_diario_path(@diario), class: " rounded-md px-4.5 py-3 text-white bg-green-400 hover:bg-green-300 font-medium cursor-pointer" %>
-    <%= button_to "Deletar", @diario, method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", class: "w-full rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-</div>
-
-
-<%= link_to root_path, 
-    class: "absolute top-10 left-78 w-10 h-10 flex items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg hover:bg-emerald-600 active:scale-95 transition-transform duration-150" do %>
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+<div class="relative flex items-center justify-center rounded-xl max-w-3xl py-3 mx-auto ">
+    <!-- Voltar -->
+    <%= link_to root_path,
+      class: "absolute left-6 w-10 h-10 flex items-center justify-center rounded-full bg-emerald-500 text-white shadow-md hover:bg-emerald-600 active:scale-95 transition-transform duration-150" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-    </svg>
-<% end %>
-
-<div class="flex flex-col w-full items-center bg-gray-100 rounded-xl min-h-screen">
-
-    <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+      </svg>
     <% end %>
+  
+    <h1 class="text-3xl font-bold text-gray-700">Diário</h1>
 
-    <div>
-        <h1 class="font-bold text-4xl text-gray-700 m-10">Diario</h1>
-    </div>
+    <!-- Ações -->
+    <div class="absolute right-6 flex items-center gap-2">
+      <%= link_to "Editar", edit_diario_path(@diario),
+        class: "rounded-md px-4 py-2 text-white bg-green-500 hover:bg-green-400 font-medium cursor-pointer" %>
 
-   <%= render @diario %>
-
+      <%= button_to "Deletar", @diario,
+        method: :delete,
+        data: { turbo_confirm: "Tem certeza que deseja excluir este diário?" },
+        form_class: "inline-block",
+        class: "rounded-md px-4 py-2 text-white bg-red-500 hover:bg-red-400 font-medium cursor-pointer" %>
+    </div> 
 </div>
+
+<div class="max-w-3xl mx-auto px-4 py-6">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 text-green-600 font-medium rounded-md mb-6 text-center" id="notice">
+      <%= notice %>
+    </p>
+  <% end %>
+
+  <!-- Card principal -->
+  <div class="bg-white rounded-2xl shadow-sm p-6">
+    <%= render @diario %>
+  </div>
+</div>
+
