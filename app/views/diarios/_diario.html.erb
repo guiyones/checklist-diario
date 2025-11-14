@@ -52,6 +52,18 @@
       "EXERCÍCIO" => @diario.exercicio?,
       "LEITURA" => @diario.leitura?,
       "ALIMENTAÇÃO" => @diario.alimentacao?,
+    }.each do |label, value| %>
+      <div class="bg-gray-50 shadow rounded-lg p-4 flex flex-col items-center">
+        <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md py-1"><%= label %></strong>
+        <div class="py-2 text-xl font-semibold text-gray-800">
+          <%= value ? "Sim" : "Não" %>
+        </div>
+      </div>
+    <% end %>
+  </section>
+
+  <section class="grid sm:grid-cols-3 lg:grid-cols-2 gap-6">
+    <% {
       "MACONHA" => @diario.maconha?,
       "ÁLCOOL" => @diario.alcool?
     }.each do |label, value| %>
@@ -63,6 +75,7 @@
       </div>
     <% end %>
   </section>
+
 
   <!-- Observações -->
   <section class="bg-gray-50 shadow rounded-lg p-4">
