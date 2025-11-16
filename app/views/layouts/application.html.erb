@@ -20,16 +20,22 @@
   </head>
     
   <body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
-
+    
+    <%= render "layouts/sidebar" %>
+    
     <!-- Conteúdo principal -->
+    <div id="main-content" class="transition-all duration-300 ml-0">
     <main class="flex-grow container mx-auto max-w-3xl p-4">
       <%= yield %>
     </main>
+    </div>
 
     <!-- Footer simples -->
     <footer class="bg-white text-center text-gray-500 py-4 text-sm border-t">
       Feito com ❤️ por Guilherme
     </footer>
+
+    <%= javascript_include_tag "menu", defer: true %>
 
   </body>
 </html>
