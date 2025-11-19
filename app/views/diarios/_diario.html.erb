@@ -40,8 +40,13 @@
 
     <div class="bg-gray-50 shadow rounded-lg p-4 flex flex-col items-center">
       <strong class="font-medium mb-1 bg-blue-100 w-full text-center rounded-md py-1">PONTOS</strong>
-      <div class="py-2 text-2xl font-bold text-emerald-600">
-        <%= @diario.pontuacao %>
+      <% if @diario.pontuacao >= 0 %>
+        <div class="py-2 text-2xl font-bold text-emerald-600">
+          <%= @diario.pontuacao %>
+      <% else %>
+        <div class="py-2 text-2xl font-bold text-red-600">
+          <%= @diario.pontuacao %>
+      <% end %>
       </div>
     </div>
   </section>
@@ -75,7 +80,6 @@
       </div>
     <% end %>
   </section>
-
 
   <!-- Observações -->
   <section class="bg-gray-50 shadow rounded-lg p-4">

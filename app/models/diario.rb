@@ -12,7 +12,8 @@ class Diario < ApplicationRecord
     end
 
     pontosNegativos.each do |habito|
-      pontos += habito ? -1:1
+      # pontos += habito ? -1:1
+      pontos += -1 if habito
     end
 
     pontos

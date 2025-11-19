@@ -32,7 +32,11 @@
           <tr class="hover:bg-gray-50 cursor-pointer transition" onclick="window.location='<%= diario_path(diario) %>'">
             <td class="px-6 py-3"><%= l diario.data %></td>
             <td class="px-6 py-3"><%= diario.dia_semana %></td>
-            <td class="px-6 py-3 text-center font-semibold text-emerald-600"><%= diario.pontuacao %></td>
+            <% if diario.pontuacao >= 0 %>
+              <td class="px-6 py-3 text-center font-semibold text-emerald-600"><%= diario.pontuacao %></td>
+            <% else %>
+              <td class="px-6 py-3 text-center font-semibold text-red-600"><%= diario.pontuacao %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
